@@ -1,97 +1,69 @@
-# tupynambalucas-dev Umbrella Meta-Repository
+# Umbrella Meta-Repository (`tupynambalucas-dev/org-core`)
 
-Central orchestrator and unified workspace for the `tupynambalucas-dev` organization.
-
-This umbrella repository orchestrates autonomous corporate repositories via [Mani](https://manicli.com) and multi-root IDE workspaces, providing unified cross-repository context, navigation, and developer orchestration while preserving completely independent Git histories, branches, release cycles, and CI/CD pipelines without Git submodule lockups or detached HEAD hazards.
+Central enterprise orchestrator and unified multi-repository workspace for the `tupynambalucas-dev` organization. This umbrella meta-repository coordinates six sovereign foundation repositories via [Mani](https://manicli.com) and multi-root IDE workspaces, providing unified cross-repository context, navigation, and batch task execution while preserving completely independent Git histories, branches, release cycles, and CI/CD pipelines.
 
 ---
 
-## Ecosystem Architecture
+## 1. Architecture Overview
+
+`org-core` forms Layer 0 (Enterprise Foundation) of the organization's dual meta-repository topology. Rather than coupling repositories with Git submodules (`160000` gitlinks), `org-core` binds each repository declaratively in [`mani.yaml`](./mani.yaml) with `sync_gitignore: false` and explicit search negation rules in [`.ignore`](./.ignore) and [`.rgignore`](./.rgignore).
 
 ```mermaid
-graph TD
+flowchart TD
   direction TB
 
   Host["org-core (Mani Orchestrator & Workspace Host)"]
 
-  Host -. "mani sync" .-> Repo1[".github (Governance & Default Health)"]
-  Host -. "mani sync" .-> Repo2["agent-mesh (Enterprise AI Agent Mesh)"]
-  Host -. "mani sync" .-> Repo3["platform (Core Platform Monorepo)"]
-  Host -. "mani sync" .-> Repo4["docs (Sovereign Documentation Hub)"]
-  Host -. "mani sync" .-> Repo5["workstation (Workstation & CLI Engine)"]
+  Host -. "mani sync" .-> Repo1[".github (Public Governance & Profile)"]
+  Host -. "mani sync" .-> Repo2[".github-private (Internal Governance & Copilot)"]
+  Host -. "mani sync" .-> Repo3["agent-mesh (Universal AI Agent Mesh)"]
+  Host -. "mani sync" .-> Repo4["platform (Core Platform Monorepo)"]
+  Host -. "mani sync" .-> Repo5["docs (Sovereign Documentation Hub)"]
+  Host -. "mani sync" .-> Repo6["workstation (Workstation, WSL2 DaC & CLI Monorepo)"]
 
   classDef repo fill:#1e1e2e,stroke:#89b4fa,stroke-width:2px,color:#cdd6f4;
-  class Host,Repo1,Repo2,Repo3,Repo4,Repo5 repo;
+  class Host,Repo1,Repo2,Repo3,Repo4,Repo5,Repo6 repo;
 ```
 
-### Managed Repositories
+---
 
-| Repository | Target Branch | Purpose |
-| :--- | :--- | :--- |
-| [`.github`](./.github/README.md) | `main` | Organization-wide governance, community health files, public profile, and IDE templates. |
-| [`.github-private`](./.github-private/README.md) | `main` | Member-only profile, enterprise Copilot custom agents, managed AI settings, and internal references. |
-| [`agent-mesh`](./agent-mesh/README.md) | `main` | Universal AI agent governance monorepo, shared MCP connectors, domain plugins, and modular skills. |
-| [`platform`](./platform/README.md) | `main` | Domain monorepo hosting Kubernetes manifests, Cortex AI gateway, studio tools, and services. |
-| [`docs`](./docs/README.md) | `main` | Sovereign documentation portal built on Docusaurus v3 with Crowdin localization. |
-| [`workstation`](./workstation/README.md) | `main` | Sovereign developer workstation engineering, WSL2 custom distributions, and CLI suite. |
+## 2. Managed Repositories & Navigation
+
+| Repository | Path / Namespace | Branch | Documentation | Agent Context | Purpose |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| [`.github`](./.github/README.md) | `.github` | `main` | [`README.md`](./.github/README.md) | [`AGENTS.md`](./.github/AGENTS.md) | Organization-wide governance, community health files, public profile, and IDE templates. |
+| [`.github-private`](./.github-private/README.md) | `.github-private` | `main` | [`README.md`](./.github-private/README.md) | [`AGENTS.md`](./.github-private/AGENTS.md) | Member-only profile, enterprise Copilot custom agents, managed AI settings, and internal references. |
+| [`agent-mesh`](./agent-mesh/README.md) | `agent-mesh` | `main` | [`README.md`](./agent-mesh/README.md) | [`AGENTS.md`](./agent-mesh/AGENTS.md) | Universal AI agent governance monorepo, 10 domain plugins, 8 MCP servers, and modular skills. |
+| [`platform`](./platform/README.md) | `platform` | `main` | [`README.md`](./platform/README.md) | [`AGENTS.md`](./platform/AGENTS.md) | Core domain monorepo hosting Kubernetes GitOps manifests, Cortex AI gateway, studio tools, and corporate services. |
+| [`docs`](./docs/README.md) | `docs` | `main` | [`README.md`](./docs/README.md) | [`AGENTS.md`](./docs/AGENTS.md) | Sovereign documentation portal built on Docusaurus v3 with Crowdin localization. |
+| [`workstation`](./workstation/README.md) | `workstation` | `main` | [`README.md`](./workstation/README.md) | [`AGENTS.md`](./workstation/AGENTS.md) | Sovereign developer workstation monorepo hosting WSL2 custom distributions (`distros/`), CLI (`cli/`), and host governance (`host/`). |
 
 ### Multi-Root IDE Workspace
 
-Open [tupynambalucas-dev.code-workspace](./tupynambalucas-dev.code-workspace) in VS Code or Antigravity IDE to mount all six repositories (`.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `workstation`) in a unified workspace with integrated Mani tasks.
+Open [`tupynambalucas-dev.code-workspace`](./tupynambalucas-dev.code-workspace) in VS Code or Antigravity IDE to mount all six repositories (`.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `workstation`) in a unified workspace with integrated Mani tasks.
 
 ---
 
-## Environment Configuration and Secret Governance
+## 3. Environment, Secret & Plugin Governance
 
-The ecosystem implements a 3-tier fallback resolution architecture to ensure development environments operate smoothly whether launched with or without active Infisical sessions:
+### A. Three-Tier Secret Resolution Architecture
 
-1. **Process Environment**: Variables already exported in the current shell session or injected via `infisical run`.
-2. **Local and Ancestor `.env` Files**: If environment variables are absent from the shell, tools like `agent-mesh plugin launchers (scripts/launcher.cjs)` walk up the directory tree to discover `.env` files located in the current workspace or at the `org-core` root.
-3. **Infisical CLI**: If neither process variables nor local `.env` files satisfy the requirements, the system invokes `infisical export` using authenticated machine credentials or local login sessions.
+The ecosystem resolves development credentials across three cascading tiers so workflows operate seamlessly with or without active cloud sessions:
 
-### Execution Modes
+1. **Process Environment**: Variables exported in the active shell session or injected via `infisical run --projectId <PROJECT_ID> --env dev -- <command>`.
+2. **Local and Ancestor `.env` Files**: If environment variables are absent from the shell, sovereign MCP launchers (`scripts/launcher.cjs`) walk up the directory tree to discover `.env` files in the child repository or at the `org-core` root (copied from [`.env.example`](./.env.example)).
+3. **Infisical CLI Fallback**: If neither process variables nor `.env` files satisfy required keys, launchers invoke `infisical export` using authenticated Machine Identity credentials or developer login sessions.
 
-#### A. Unified Meta-Repository (`org-core`)
-
-When opening the entire `org-core` repository:
-
-- You can maintain a root `.env` file (copied from `.env.example`) to provide shared credentials across all repositories.
-- Launch commands or AI agent CLI through Infisical:
-
-```bash
-infisical run --projectId <PROJECT_ID> --env dev -- agy
-```
-
-#### B. Standalone Workspace Mode
-
-When developing within an isolated repository directory (`agent-mesh/`, `platform/`, or `docs/`):
-
-- Each child repository contains its own `.env.example` template.
-- Copy `.env.example` to `.env` inside the repository root to test and execute tools independently.
-- Individual repositories can also be run directly with project-scoped Infisical commands:
-
-```bash
-# Inside agent-mesh:
-infisical run --projectId <AGENT_MESH_PROJECT_ID> --env dev -- <command>
-
-# Inside platform:
-infisical run --projectId <PLATFORM_PROJECT_ID> --env dev -- <command>
-```
-
----
-
-## Enterprise AI Agent Mesh & Plugin Consumption Architecture
-
-The organization provisions AI agent capabilities (skills, rules, lifecycle hooks, and Model Context Protocol servers) using a **Dual Consumption Model**:
+### B. Enterprise AI Agent Mesh Dual Consumption Model
 
 ```mermaid
-graph LR
+flowchart LR
   subgraph LocalMetaRepo["org-core (Local Umbrella Mode)"]
     OCP[".agents/plugins.json"] -->|relative path| AMP["agent-mesh/plugins/packages"]
     OCP -->|relative path| PLP["platform/.agents/plugins"]
   end
 
-  subgraph ExternalConsumers["External Repositories (omnichannel, platform, docs)"]
+  subgraph ExternalConsumers["External & Standalone Monorepos (omnichannel, platform, docs)"]
     EPJ[".agents/plugins.json"] -->|umbrella package| NMA["node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages"]
   end
 
@@ -100,34 +72,31 @@ graph LR
   class OCP,AMP,PLP,EPJ,NMA box;
 ```
 
-### 1. Dual Consumption Modes
-
 | Mode | Environment | Discovery Manifest (`.agents/plugins.json`) | Package Dependency |
 | :--- | :--- | :--- | :--- |
-| **Meta-Repository Mode** | `org-core` Umbrella IDE Workspace | `agent-mesh/plugins/packages`<br>`platform/.agents/plugins` | None (zero build steps, direct local path resolution) |
+| **Meta-Repository Mode** | `org-core` Umbrella IDE Workspace | `agent-mesh/plugins/packages`<br />`platform/.agents/plugins` | None (zero build steps, direct local path resolution) |
 | **External Service Mode** | Standalone Repositories (`omnichannel`, `platform`, `docs`) | `node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages` | `@tupynambalucas-dev/agent-mesh` via `catalogs.plugins-stack` |
-
-### 2. Sovereign MCP Launchers & Zero-Token Distribution
-
-- **Zero-Token Git Channel**: Projects consume `@tupynambalucas-dev/agent-mesh` via `github:tupynambalucas-dev/agent-mesh` without configuring private npm tokens or registry credentials.
-- **Sovereign MCP Execution**: MCP servers include standalone `dist/bin.cjs` bundles committed to Git and executed via `scripts/launcher.cjs`, completely eliminating runtime compile steps and external path dependencies in consumer projects.
 
 ---
 
-## Getting Started
+## 4. Getting Started
 
-### 1. Prerequisites
+### Prerequisites
 
-Install `mani` using Scoop:
+- **Git**: `>= 2.40` (configured with Ed25519 SSH commit signing)
+- **Mani CLI**: `>= 0.30` (multi-repository orchestrator)
+- **Infisical CLI**: `>= 0.31` (secret management)
+
+Install `mani` on Windows via Scoop (or via the corporate WSL2 distribution `tupynambalucas-dev`):
 
 ```powershell
 scoop bucket add poldi https://github.com/aliesbelik/poldi
 scoop install mani
 ```
 
-### 2. Clone Workspace and Synchronize Repositories
+### Workspace Initialization
 
-Clone the umbrella orchestrator and initialize all child repositories:
+Clone the umbrella orchestrator and synchronize all six foundation repositories:
 
 ```bash
 git clone git@github.com:tupynambalucas-dev/org-core.git
@@ -135,37 +104,43 @@ cd org-core
 mani sync
 ```
 
-### 3. Daily Multi-Repository Operations
+---
 
-Run batch commands across all repositories with zero submodule overhead:
+## 5. Multi-Repository Operations
+
+| Command | Target Scope | Description |
+| :--- | :--- | :--- |
+| `mani sync` | All repositories | Clones missing repositories and synchronizes remote configurations declared in [`mani.yaml`](./mani.yaml). |
+| `mani run status` | All repositories | Executes `git status -s` across all six managed repositories. |
+| `mani run fetch` | All repositories | Executes `git fetch origin --prune` across all managed repositories. |
+| `mani run pull` | All repositories | Pulls latest `main` branch updates across all managed repositories. |
+| `mani run branch` | All repositories | Displays the active Git branch for every repository in a formatted table. |
+| `mani run onboard` | `.github` | Runs workstation compliance verification via the `gh tl verify` CLI extension. |
+| `mani run verify-workstation` | `.github` | Runs the PowerShell workstation verification script (`scripts/verify-workstation.ps1`). |
 
 ```bash
-# Check status across all projects
+# Execute daily multi-repository health checks
 mani run status
-
-# Fetch remote updates
 mani run fetch
-
-# Pull latest main across all projects
 mani run pull
-
-# Show active branches
 mani run branch
 ```
 
 ---
 
-## Development Workflow and Governance
+## 6. Governance & Contributing Standards
 
-All development across repositories must comply with organizational governance:
+All contributions across `org-core` and its managed repositories must comply with organizational engineering governance:
 
-1. **Cryptographic Signatures**: All Git commits and annotated tags MUST be signed using SSH (`git commit -S -m "..."`). Unsigned commits are rejected by repository rulesets.
-2. **Conventional Commits**: Commit messages must follow the Conventional Commits v1.0.0 specification (`feat`, `fix`, `docs`, `chore`, etc.).
-3. **Zero-Emoji Policy**: Emojis are strictly prohibited in commit messages, documentation, code comments, and chat responses.
-4. **Autonomous Single-Branch GitHub Flow**: Each repository operates independently. Developers create feature branches (`feat/<slug>`, `fix/<slug>`), push them, and open Pull Requests against `main`. No submodule pointer bumps or cross-repo pointer synchronization PRs are needed.
+1. **Cryptographic Commit Signing**: All Git commits and annotated tags MUST be signed using SSH (`git commit -S -m "..."`). Unsigned commits are rejected by repository rulesets.
+2. **Conventional Commits**: Commit messages must follow the Conventional Commits v1.0.0 specification (`<type>(<scope>): <description>`).
+3. **Single-Branch GitHub Flow**: Each repository operates independently on `main`. Developers create short-lived branches (`feat/<slug>`, `fix/<slug>`, `docs/<slug>`, `chore/<slug>`), push them, and open Pull Requests against `main`.
+4. **Zero-Emoji Invariant**: Emojis are strictly prohibited in commit messages, documentation, code comments, and agent interactions.
+5. **Secret Hygiene**: Never commit `.env` files or plaintext credentials; use [`.env.example`](./.env.example) templates and Infisical secret injection.
+6. **AI Agent Context**: Autonomous agents operating in this workspace MUST read [AGENTS.md](./AGENTS.md) prior to executing tasks.
 
 ---
 
-## License
+## 7. License
 
 Licensed under the [Apache License 2.0](./LICENSE). Copyright (c) 2026 tupynambalucas.dev.
