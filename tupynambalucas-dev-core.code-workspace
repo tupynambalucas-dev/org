@@ -1,7 +1,7 @@
 {
   "folders": [
     {
-      "name": "org-core (Meta-Repository Root)",
+      "name": "org-core (Core Orchestrator)",
       "path": "."
     },
     {
@@ -48,6 +48,13 @@
       "**/.github": false,
       "**/.github-private": false,
       "**/.git": false
+    },
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/.pnpm-store/**": true,
+      "**/dist/**": true
     }
   },
   "extensions": {
@@ -67,14 +74,14 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Antigravity CLI (Meta-Repo Scope)",
+        "label": "Antigravity CLI (Core Scope)",
         "type": "process",
         "command": "wt.exe",
         "windows": {
           "command": "wt.exe",
           "args": [
             "-d",
-            "${workspaceFolder:org-core (Meta-Repository Root)}",
+            "${workspaceFolder:org-core (Core Orchestrator)}",
             "powershell.exe",
             "-NoExit",
             "-Command",
