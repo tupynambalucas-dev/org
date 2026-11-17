@@ -40,7 +40,7 @@ flowchart TD
 
 ### Multi-Root IDE Workspace
 
-Open [`tupynambalucas-dev.code-workspace`](./tupynambalucas-dev.code-workspace) in VS Code or Antigravity IDE to mount all six repositories (`.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `workstation`) in a unified workspace with integrated Mani tasks.
+Open [`tupynambalucas-dev-core.code-workspace`](./tupynambalucas-dev-core.code-workspace) in VS Code or Antigravity IDE to mount all six repositories (`.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `workstation`) in a unified workspace with integrated Mani tasks.
 
 ---
 
