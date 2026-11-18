@@ -53,8 +53,7 @@ The organization operates under a unified Dual Consumption Model for AI agent pl
      ```json
      {
        "entries": [
-         { "path": "agent-mesh/plugins/packages" },
-         { "path": "platform/.agents/plugins" }
+         { "path": "agent-mesh/plugins/packages" }
        ]
      }
      ```

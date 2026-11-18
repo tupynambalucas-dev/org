@@ -60,7 +60,6 @@ The ecosystem resolves development credentials across three cascading tiers so w
 flowchart LR
   subgraph LocalMetaRepo["org-core (Local Umbrella Mode)"]
     OCP[".agents/plugins.json"] -->|relative path| AMP["agent-mesh/plugins/packages"]
-    OCP -->|relative path| PLP["platform/.agents/plugins"]
   end
 
   subgraph ExternalConsumers["External & Standalone Monorepos (omnichannel, platform, docs)"]
@@ -69,12 +68,12 @@ flowchart LR
 
   AMP -.->|releases to| NMA
   classDef box fill:#1e1e2e,stroke:#89b4fa,stroke-width:2px,color:#cdd6f4;
-  class OCP,AMP,PLP,EPJ,NMA box;
+  class OCP,AMP,EPJ,NMA box;
 ```
 
 | Mode | Environment | Discovery Manifest (`.agents/plugins.json`) | Package Dependency |
 | :--- | :--- | :--- | :--- |
-| **Meta-Repository Mode** | `org-core` Umbrella IDE Workspace | `agent-mesh/plugins/packages`<br />`platform/.agents/plugins` | None (zero build steps, direct local path resolution) |
+| **Meta-Repository Mode** | `org-core` Umbrella IDE Workspace | `agent-mesh/plugins/packages` | None (zero build steps, direct local path resolution) |
 | **External Service Mode** | Standalone Repositories (`omnichannel`, `platform`, `docs`) | `node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages` | `@tupynambalucas-dev/agent-mesh` via `catalogs.plugins-stack` |
 
 ---
