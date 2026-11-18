@@ -73,7 +73,7 @@ The organization operates under a unified Dual Consumption Model for AI agent pl
        ]
      }
      ```
-   - All 10 domain plugins (`appsheet`, `atelier`, `docusaurus`, `github-flow`, `github-org`, `gwork`, `repo`, `research`, `secrets`, `web`) and 8 sovereign MCP servers execute seamlessly via self-contained launchers (`scripts/launcher.cjs`) and committed bundles (`dist/bin.cjs`).
+   - All 11 domain plugins (`appsheet`, `atelier`, `docusaurus`, `github-flow`, `github-org`, `gwork`, `profile`, `repo`, `research`, `secrets`, `web`) and 9 sovereign MCP servers execute seamlessly via self-contained launchers (`scripts/launcher.cjs`) and committed bundles (`dist/bin.cjs`).
 
 ## Architectural Plans & Artifact Dual-Storage Standard
 
@@ -91,3 +91,4 @@ Agents operating at the `org-core` meta-repository layer MUST autonomously engag
 - **Repository Governance Plugin (`@tupynambalucas-dev/plugin-repo`)**: `readme-architect`, `readme-auditor`, `monorepo-architect`, `community-health-architect`, `license-architect`, `github-standards-architect`, `mani-operator`.
 - **GitHub Plugins (`@tupynambalucas-dev/plugin-github-org`, `@tupynambalucas-dev/plugin-github-flow`)**: `github-org-operator`, `github-ruleset-operator`, `github-security-auditor`, `github-app-operator`, `github-flow-operator`, `github-actions-operator`.
 - **Secrets Plugin (`@tupynambalucas-dev/plugin-secrets`)**: `infisical-vault-operator`, `secret-rotation-operator`.
+- **Profile Plugin (`@tupynambalucas-dev/plugin-profile`)**: `developer-profile-architect`, `developer-advancement-strategist`, `linkedin-profile-architect`, `linkedin-job-operator`, `linkedin-application-auditor`, `linkedin-outreach-operator`.
