@@ -14,7 +14,7 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 - [agent-mesh](./agent-mesh/AGENTS.md): Enterprise AI agent mesh context router, MCP packages, domain plugins, and modular skills.
 - [platform](./platform/AGENTS.md): Core platform monorepo containing services, apps, and Kubernetes manifests.
 - [docs](./docs/AGENTS.md): Sovereign documentation hub built with Docusaurus v3 and Crowdin.
-- [workstation](./workstation/AGENTS.md): Sovereign developer workstation monorepo hosting WSL2 custom distributions (`distros/`), CLI & GitHub extensions (`cli/`), and host governance (`host/`).
+- [workstation](./workstation/AGENTS.md): Sovereign developer workstation monorepo hosting WSL2 custom distributions (`distributions/`), developer toolchain & GitHub CLI extensions (`tools/`), Windows host virtualization (`virtualization/`), and Diataxis documentation hub (`references/`).
 
 ## Governance Standards
 

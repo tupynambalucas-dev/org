@@ -36,7 +36,7 @@ flowchart TD
 | [`agent-mesh`](./agent-mesh/README.md) | `agent-mesh` | `main` | [`README.md`](./agent-mesh/README.md) | [`AGENTS.md`](./agent-mesh/AGENTS.md) | Universal AI agent governance monorepo, 11 domain plugins, 9 MCP servers, and modular skills. |
 | [`platform`](./platform/README.md) | `platform` | `main` | [`README.md`](./platform/README.md) | [`AGENTS.md`](./platform/AGENTS.md) | Core domain monorepo hosting Kubernetes GitOps manifests, Cortex AI gateway, studio tools, and corporate services. |
 | [`docs`](./docs/README.md) | `docs` | `main` | [`README.md`](./docs/README.md) | [`AGENTS.md`](./docs/AGENTS.md) | Sovereign documentation portal built on Docusaurus v3 with Crowdin localization. |
-| [`workstation`](./workstation/README.md) | `workstation` | `main` | [`README.md`](./workstation/README.md) | [`AGENTS.md`](./workstation/AGENTS.md) | Sovereign developer workstation monorepo hosting WSL2 custom distributions (`distros/`), CLI (`cli/`), and host governance (`host/`). |
+| [`workstation`](./workstation/README.md) | `workstation` | `main` | [`README.md`](./workstation/README.md) | [`AGENTS.md`](./workstation/AGENTS.md) | Sovereign developer workstation monorepo hosting WSL2 custom distributions (`distributions/`), developer toolchain & CLI (`tools/`), host virtualization (`virtualization/`), and documentation hub (`references/`). |
 
 ### Multi-Root IDE Workspace
 
