@@ -6,3 +6,5 @@
 !foundation/
 !.agents/plans/
 !.agents/plans/**
+!.agents/references/
+!.agents/references/**
