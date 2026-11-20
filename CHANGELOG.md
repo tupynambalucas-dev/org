@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation & Specifications
 
+- [docs(agents): align root context router and env example for unified github-repo plugin #40](https://github.com/tupynambalucas-dev/org-core/pull/40)
 - [docs(agents): update required skills for 5 modular github plugins #37](https://github.com/tupynambalucas-dev/org-core/pull/37)
 - [docs(meta): align workstation subsystem references with ddd refactor #36](https://github.com/tupynambalucas-dev/org-core/pull/36)
 - [docs(governance): register profile plugin and linkedin mcp in context routers #35](https://github.com/tupynambalucas-dev/org-core/pull/35)

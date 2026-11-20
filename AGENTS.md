@@ -88,7 +88,11 @@ Architectural blueprints, technical analyses, and master plans follow strict ent
 Agents operating at the `org-core` meta-repository layer MUST autonomously engage the domain skills provided by [`agent-mesh`](./agent-mesh/plugins/README.md):
 
 - **Atelier Plugin (`@tupynambalucas-dev/plugin-atelier`)**: `router-architect`, `skill-architect`, `rule-architect`, `hook-architect`, `plugin-architect`, `plan-architect`.
-- **Repository Governance Plugin (`@tupynambalucas-dev/plugin-repo`)**: `readme-architect`, `readme-auditor`, `monorepo-architect`, `community-health-architect`, `license-architect`, `github-standards-architect`, `mani-operator`.
-- **GitHub Domain Plugins (`@tupynambalucas-dev/plugin-github-*`)**: `github-org-operator`, `github-ruleset-operator`, `github-security-auditor`, `github-app-operator` (`github-org`), `github-repo-architect` (`github-repo`), `github-flow-operator` (`github-flow`), `github-actions-operator` (`github-actions`), `github-releases-operator` (`github-releases`).
+- **GitHub Domain Plugins (`@tupynambalucas-dev/plugin-github-*`)**:
+  - **`github-org`**: `github-org-operator`, `github-ruleset-operator`, `github-security-auditor`, `github-app-operator`.
+  - **`github-repo`**: `github-repo-architect`, `readme-architect`, `readme-auditor`, `monorepo-architect`, `community-health-architect`, `license-architect`, `github-standards-architect`, `mani-operator`.
+  - **`github-flow`**: `github-flow-operator`.
+  - **`github-actions`**: `github-actions-operator`.
+  - **`github-releases`**: `github-releases-operator`.
 - **Secrets Plugin (`@tupynambalucas-dev/plugin-secrets`)**: `infisical-vault-operator`, `secret-rotation-operator`.
 - **Profile Plugin (`@tupynambalucas-dev/plugin-profile`)**: `developer-profile-architect`, `developer-advancement-strategist`, `linkedin-profile-architect`, `linkedin-job-operator`, `linkedin-application-auditor`, `linkedin-outreach-operator`.
