@@ -52,14 +52,15 @@ projects:
       - docusaurus
       - core
 
-  workstation:
-    path: workstation
-    url: git@github.com:tupynambalucas-dev/workstation.git
-    desc: Sovereign developer workstation engineering, WSL2 custom distributions, and CLI suite.
+  foundation:
+    path: foundation
+    url: git@github.com:tupynambalucas-dev/foundation.git
+    desc: Sovereign foundation monorepo hosting Linux distributions, CLI suite, machine identities, and virtualization.
     tags:
-      - workstation
+      - foundation
       - tooling
       - cli
+      - identity
       - core
 
 targets:

@@ -19,7 +19,7 @@ flowchart TD
   Host -. "mani sync" .-> Repo3["agent-mesh (Universal AI Agent Mesh)"]
   Host -. "mani sync" .-> Repo4["platform (Core Platform Monorepo)"]
   Host -. "mani sync" .-> Repo5["docs (Sovereign Documentation Hub)"]
-  Host -. "mani sync" .-> Repo6["workstation (Workstation, WSL2 DaC & CLI Monorepo)"]
+  Host -. "mani sync" .-> Repo6["foundation (Foundation, WSL2 DaC, Identities & CLI Monorepo)"]
 
   classDef repo fill:#1e1e2e,stroke:#89b4fa,stroke-width:2px,color:#cdd6f4;
   class Host,Repo1,Repo2,Repo3,Repo4,Repo5,Repo6 repo;
@@ -36,11 +36,11 @@ flowchart TD
 | [`agent-mesh`](./agent-mesh/README.md) | `agent-mesh` | `main` | [`README.md`](./agent-mesh/README.md) | [`AGENTS.md`](./agent-mesh/AGENTS.md) | Universal AI agent governance monorepo, 11 domain plugins, 9 MCP servers, and modular skills. |
 | [`platform`](./platform/README.md) | `platform` | `main` | [`README.md`](./platform/README.md) | [`AGENTS.md`](./platform/AGENTS.md) | Core domain monorepo hosting Kubernetes GitOps manifests, Cortex AI gateway, studio tools, and corporate services. |
 | [`docs`](./docs/README.md) | `docs` | `main` | [`README.md`](./docs/README.md) | [`AGENTS.md`](./docs/AGENTS.md) | Sovereign documentation portal built on Docusaurus v3 with Crowdin localization. |
-| [`workstation`](./workstation/README.md) | `workstation` | `main` | [`README.md`](./workstation/README.md) | [`AGENTS.md`](./workstation/AGENTS.md) | Sovereign developer workstation monorepo hosting WSL2 custom distributions (`distributions/`), developer toolchain & CLI (`tools/`), host virtualization (`virtualization/`), and documentation hub (`references/`). |
+| [`foundation`](./foundation/README.md) | `foundation` | `main` | [`README.md`](./foundation/README.md) | [`AGENTS.md`](./foundation/AGENTS.md) | Sovereign foundation monorepo hosting WSL2 custom distributions (`distributions/`), developer toolchain & CLI (`tools/`), machine identities and Token Broker (`identity/`), host virtualization (`virtualization/`), and documentation hub (`references/`). |
 
 ### Multi-Root IDE Workspace
 
-Open [`tupynambalucas-dev-core.code-workspace`](./tupynambalucas-dev-core.code-workspace) in VS Code or Antigravity IDE to mount all six repositories (`.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `workstation`) in a unified workspace with integrated Mani tasks.
+Open [`tupynambalucas-dev-core.code-workspace`](./tupynambalucas-dev-core.code-workspace) in VS Code or Antigravity IDE to mount all six repositories (`.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `foundation`) in a unified workspace with integrated Mani tasks.
 
 ---
 
