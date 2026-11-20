@@ -89,6 +89,6 @@ Agents operating at the `org-core` meta-repository layer MUST autonomously engag
 
 - **Atelier Plugin (`@tupynambalucas-dev/plugin-atelier`)**: `router-architect`, `skill-architect`, `rule-architect`, `hook-architect`, `plugin-architect`, `plan-architect`.
 - **Repository Governance Plugin (`@tupynambalucas-dev/plugin-repo`)**: `readme-architect`, `readme-auditor`, `monorepo-architect`, `community-health-architect`, `license-architect`, `github-standards-architect`, `mani-operator`.
-- **GitHub Plugins (`@tupynambalucas-dev/plugin-github-org`, `@tupynambalucas-dev/plugin-github-flow`)**: `github-org-operator`, `github-ruleset-operator`, `github-security-auditor`, `github-app-operator`, `github-flow-operator`, `github-actions-operator`.
+- **GitHub Domain Plugins (`@tupynambalucas-dev/plugin-github-*`)**: `github-org-operator`, `github-ruleset-operator`, `github-security-auditor`, `github-app-operator` (`github-org`), `github-repo-architect` (`github-repo`), `github-flow-operator` (`github-flow`), `github-actions-operator` (`github-actions`), `github-releases-operator` (`github-releases`).
 - **Secrets Plugin (`@tupynambalucas-dev/plugin-secrets`)**: `infisical-vault-operator`, `secret-rotation-operator`.
 - **Profile Plugin (`@tupynambalucas-dev/plugin-profile`)**: `developer-profile-architect`, `developer-advancement-strategist`, `linkedin-profile-architect`, `linkedin-job-operator`, `linkedin-application-auditor`, `linkedin-outreach-operator`.
