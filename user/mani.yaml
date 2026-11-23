@@ -1,0 +1,85 @@
+# Manifest specification: https://manicli.com
+# Developer Professional Individual Namespace Manifest (org/user/mani.yaml)
+
+sync_gitignore: false
+sync_remotes: false
+auto_discovery: false
+
+specs:
+  default:
+    output: stream
+    parallel: false
+    ignore_errors: false
+    ignore_non_existing: true
+
+  parallel-stream:
+    output: stream
+    parallel: true
+    forks: 4
+    ignore_errors: false
+    ignore_non_existing: true
+
+  parallel-table:
+    output: table
+    parallel: true
+    forks: 4
+    ignore_errors: false
+    ignore_non_existing: true
+
+themes:
+  enterprise:
+    table:
+      border:
+        around: true
+        columns: true
+        header: true
+        rows: true
+
+targets:
+  all:
+    all: true
+  profile:
+    tags: [profile]
+  research:
+    tags: [research]
+  external:
+    tags: [external]
+
+projects:
+  profile:
+    path: profile
+    url: git@github.com:tupynambalucas/tupynambalucas.git
+    desc: Developer special GitHub profile repository and automated SVG stats renderer (@tupynambalucas/profile).
+    tags: [user, profile, career, monorepo]
+
+  academic-lab:
+    path: academic-lab
+    url: git@github.com:tupynambalucas/academic-lab.git
+    desc: Structured knowledge engineering and AI-assisted research monorepo (@tupynambalucas/academic-lab).
+    tags: [user, research, docusaurus, monorepo]
+
+tasks:
+  status:
+    desc: Check Git working tree status across developer professional projects
+    target: all
+    spec: parallel-stream
+    cmd: git status -s
+
+  branch:
+    desc: Display current active branch for developer professional projects
+    target: all
+    spec: parallel-table
+    theme: enterprise
+    cmd: git branch --show-current
+
+  fetch:
+    desc: Fetch latest changes from remote origin across developer professional projects
+    target: all
+    spec: parallel-stream
+    cmd: git fetch origin --prune
+
+  pull:
+    desc: Pull latest main branch updates across developer professional projects
+    target: all
+    spec: parallel-stream
+    cmd: git pull origin main

@@ -1,111 +1,208 @@
 # Manifest specification: https://manicli.com
-# tupynambalucas-dev Organizational Workspace Manifest
+# tupynambalucas-dev Master Organization & Professional Workstation Manifest (org/mani.yaml)
 
 sync_gitignore: false
+sync_remotes: false
+auto_discovery: false
+
+specs:
+  default:
+    output: stream
+    parallel: false
+    ignore_errors: false
+    ignore_non_existing: true
+
+  parallel-stream:
+    output: stream
+    parallel: true
+    forks: 6
+    ignore_errors: false
+    ignore_non_existing: true
+
+  parallel-table:
+    output: table
+    parallel: true
+    forks: 6
+    ignore_errors: false
+    ignore_non_existing: true
+    omit_empty_rows: false
+
+  dirty-table:
+    output: table
+    parallel: true
+    forks: 6
+    ignore_errors: false
+    ignore_non_existing: true
+    omit_empty_rows: true
+
+themes:
+  enterprise:
+    table:
+      border:
+        around: true
+        columns: true
+        header: true
+        rows: true
+
+targets:
+  all:
+    all: true
+  org-only:
+    tags_expr: 'core || ecosystem'
+  core:
+    tags: [core]
+  ecosystem:
+    tags: [ecosystem]
+  commercial:
+    tags: [commercial]
+  internal:
+    tags: [internal]
+  oss:
+    tags: [oss]
+  clients:
+    tags: [clients]
+  user:
+    tags: [user]
+  monorepos:
+    tags: [monorepo]
 
 projects:
+  # --- META-ORCHESTRATOR ROOT ---
+  org:
+    path: .
+    sync: false
+    desc: Master organizational orchestrator and unified multi-root workspace host (tupynambalucas-dev/org).
+    tags: [meta, core]
+
+  # --- TIER 1: CORE FOUNDATION (tupynambalucas-dev/*) ---
   .github:
     path: .github
     url: git@github.com:tupynambalucas-dev/.github.git
     desc: Organization-wide governance, community health standards, and public profile.
-    tags:
-      - governance
-      - health
-      - core
+    tags: [core, governance, health]
 
   .github-private:
     path: .github-private
     url: git@github.com:tupynambalucas-dev/.github-private.git
-    desc: Organization-wide internal member profile, private governance, and enterprise AI settings repository.
-    tags:
-      - governance
-      - health
-      - private
-      - core
+    desc: Organization-wide internal member profile, private governance, and enterprise AI settings.
+    tags: [core, governance, health, private]
 
   agent-mesh:
     path: agent-mesh
     url: git@github.com:tupynambalucas-dev/agent-mesh.git
     desc: Universal AI agent governance mesh, MCP servers, domain plugins, and skills.
-    tags:
-      - ai
-      - agents
-      - mesh
-      - core
+    tags: [core, ai, agents, mesh, monorepo]
 
   platform:
     path: platform
     url: git@github.com:tupynambalucas-dev/platform.git
-    desc: Domain monorepo hosting Kubernetes manifests, Cortex AI gateway, and services.
-    tags:
-      - platform
-      - k8s
-      - monorepo
-      - core
+    desc: Core domain monorepo hosting Kubernetes manifests, Cortex AI gateway, and services.
+    tags: [core, platform, k8s, monorepo]
 
   docs:
     path: docs
     url: git@github.com:tupynambalucas-dev/docs.git
     desc: Sovereign technical documentation hub built on Docusaurus v3 and Crowdin.
-    tags:
-      - documentation
-      - docusaurus
-      - core
+    tags: [core, documentation, docusaurus, monorepo]
 
   foundation:
     path: foundation
     url: git@github.com:tupynambalucas-dev/foundation.git
-    desc: Sovereign foundation monorepo hosting Linux distributions, CLI suite, machine identities, and virtualization.
-    tags:
-      - foundation
-      - tooling
-      - cli
-      - identity
-      - core
+    desc: Sovereign foundation monorepo hosting WSL2 distributions, CLI suite, identities, and virtualization.
+    tags: [core, foundation, tooling, cli, identity, monorepo]
 
-targets:
-  all:
-    all: true
+  # --- TIER 2: PRODUCT PORTFOLIO & ECOSYSTEM (tupynambalucas-dev/ecosystem & products) ---
+  ecosystem:
+    path: ecosystem
+    url: git@github.com:tupynambalucas-dev/ecosystem.git
+    desc: Product portfolio orchestrator and ecosystem sub-meta-repository (tupynambalucas-dev/ecosystem).
+    tags: [meta, ecosystem]
+
+  omnichannel:
+    path: ecosystem/commercial/omnichannel
+    url: git@github.com:tupynambalucas-dev/omnichannel.git
+    desc: Commercial multi-tenant Omnichannel communication platform and SaaS engine.
+    tags: [ecosystem, commercial, saas, omnichannel, monorepo]
+
+  elo-organico:
+    path: ecosystem/commercial/elo-organico
+    url: git@github.com:tupynambalucas-dev/elo-organico.git
+    desc: Commercial organic product sharing and community management platform.
+    tags: [ecosystem, commercial, saas, elo-organico, monorepo]
+
+  tessel:
+    path: ecosystem/internal/tessel
+    url: git@github.com:tupynambalucas-dev/tessel.git
+    desc: Proprietary hybrid spatial social ecosystem and WebGPU/Three.js simulation engine.
+    tags: [ecosystem, internal, proprietary, tessel, monorepo]
+
+  # --- TIER 3: DEVELOPER PROFESSIONAL NAMESPACE (user/* -> tupynambalucas/*) ---
+  profile:
+    path: user/profile
+    url: git@github.com:tupynambalucas/tupynambalucas.git
+    desc: Developer special GitHub profile repository and automated SVG stats renderer.
+    tags: [user, profile, career, monorepo]
+
+  academic-lab:
+    path: user/academic-lab
+    url: git@github.com:tupynambalucas/academic-lab.git
+    desc: Structured knowledge engineering and AI-assisted research monorepo.
+    tags: [user, research, docusaurus, monorepo]
 
 tasks:
   status:
-    desc: Check Git status across all projects
+    desc: Check Git working tree status across all synced projects
     target: all
+    spec: parallel-stream
     cmd: git status -s
-    spec:
-      output: stream
 
-  fetch:
-    desc: Fetch latest changes from remote origin across all projects
+  dirty:
+    desc: Display table of only repositories with uncommitted changes
     target: all
-    cmd: git fetch origin --prune
-    spec:
-      output: stream
-
-  pull:
-    desc: Pull latest main branch updates across all projects
-    target: all
-    cmd: git pull origin main
-    spec:
-      output: stream
+    spec: dirty-table
+    theme: enterprise
+    cmd: git status -s
 
   branch:
-    desc: Display current active branch for all projects
+    desc: Display current active branch for all synced projects
     target: all
+    spec: parallel-table
+    theme: enterprise
     cmd: git branch --show-current
-    spec:
-      output: table
+
+  fetch:
+    desc: Fetch latest changes and prune stale remote references in parallel
+    target: all
+    spec: parallel-stream
+    cmd: git fetch origin --prune
+
+  pull:
+    desc: Pull latest main branch updates across all synced projects
+    target: all
+    spec: parallel-stream
+    cmd: git pull origin main
+
+  overview:
+    desc: Comprehensive multi-repository audit table (branch, status, last commit)
+    target: all
+    spec: parallel-table
+    theme: enterprise
+    commands:
+      - name: Branch
+        cmd: git rev-parse --abbrev-ref HEAD
+      - name: Dirty
+        cmd: git status -s
+      - name: Last Commit
+        cmd: git log -1 --format="%h %s (%cr)"
 
   verify-workstation:
-    desc: Run organizational workstation verification script via gh tl
+    desc: Run organizational workstation verification via gh tl verify
     target:
-      projects:
-        - foundation
+      projects: [foundation]
     cmd: gh tl verify
 
   onboard:
-    desc: Run workstation compliance verification via workstation extension
+    desc: Run workstation cryptographic onboarding verification
     target:
-      projects:
-        - foundation
+      projects: [foundation]
     cmd: gh tl verify

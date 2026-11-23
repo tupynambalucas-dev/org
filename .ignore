@@ -4,6 +4,10 @@
 !platform/
 !docs/
 !foundation/
+!ecosystem/
+!ecosystem/**
+!user/
+!user/**
 !.agents/plans/
 !.agents/plans/**
 !.agents/references/

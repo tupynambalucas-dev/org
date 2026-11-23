@@ -1,4 +1,4 @@
-# Changelog - @tupynambalucas-dev/org-core
+# Changelog - @tupynambalucas-dev/org
 
 <!-- changelog-start -->
 

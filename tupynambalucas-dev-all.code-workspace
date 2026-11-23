@@ -1,0 +1,143 @@
+{
+  "folders": [
+    {
+      "name": "org (Master Organization Orchestrator)",
+      "path": "."
+    },
+    {
+      "name": "[GOV] .github (Org Governance)",
+      "path": ".github"
+    },
+    {
+      "name": "[GOV] .github-private (Private Governance & Member Profile)",
+      "path": ".github-private"
+    },
+    {
+      "name": "[CORE] platform (Core Monorepo)",
+      "path": "platform"
+    },
+    {
+      "name": "[CORE] docs (Documentation Hub)",
+      "path": "docs"
+    },
+    {
+      "name": "[CORE] agent-mesh (Universal Agent Mesh)",
+      "path": "agent-mesh"
+    },
+    {
+      "name": "[CORE] foundation (Foundation Engineering & Identities)",
+      "path": "foundation"
+    },
+    {
+      "name": "[ECO] ecosystem (Product Portfolio Orchestrator)",
+      "path": "ecosystem"
+    },
+    {
+      "name": "[ECO] omnichannel (Commercial SaaS Monorepo)",
+      "path": "ecosystem/commercial/omnichannel"
+    },
+    {
+      "name": "[ECO] elo-organico (Commercial SaaS Monorepo)",
+      "path": "ecosystem/commercial/elo-organico"
+    },
+    {
+      "name": "[ECO] tessel (Proprietary Enterprise Monorepo)",
+      "path": "ecosystem/internal/tessel"
+    },
+    {
+      "name": "[USER] profile (Developer Professional Profile)",
+      "path": "user/profile"
+    },
+    {
+      "name": "[USER] academic-lab (Developer Research Monorepo)",
+      "path": "user/academic-lab"
+    }
+  ],
+  "settings": {
+    "git.autoRepositoryDetection": true,
+    "search.useIgnoreFiles": false,
+    "search.useGlobalIgnoreFiles": false,
+    "search.useParentIgnoreFiles": false,
+    "search.exclude": {
+      "**/.github": false,
+      "**/.github-private": false,
+      "**/node_modules": true,
+      "**/.pnpm-store": true,
+      "**/.git": true,
+      "**/dist": true,
+      "**/.docusaurus": true,
+      "**/.turbo": true
+    },
+    "files.exclude": {
+      "**/.github": false,
+      "**/.github-private": false,
+      "**/.git": true
+    },
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/.pnpm-store/**": true,
+      "**/dist/**": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "bradlc.vscode-tailwindcss",
+      "d-koppenhagen.file-tree-to-text-generator",
+      "dbaeumer.vscode-eslint",
+      "emanuelebartolesi.taskdeck",
+      "esbenp.prettier-vscode",
+      "github.vscode-github-actions",
+      "redhat.vscode-yaml",
+      "shd101wyy.markdown-preview-enhanced",
+      "unifiedjs.vscode-mdx"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Antigravity CLI (Org Scope)",
+        "type": "process",
+        "command": "wt.exe",
+        "windows": {
+          "command": "wt.exe",
+          "args": [
+            "-d",
+            "${workspaceFolder:org (Master Organization Orchestrator)}",
+            "powershell.exe",
+            "-NoExit",
+            "-Command",
+            "agy"
+          ]
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Mani: Sync All Repositories",
+        "type": "shell",
+        "command": "mani sync",
+        "problemMatcher": []
+      },
+      {
+        "label": "Mani: Check Git Status",
+        "type": "shell",
+        "command": "mani run status",
+        "problemMatcher": []
+      },
+      {
+        "label": "Mani: Audit Overview Table",
+        "type": "shell",
+        "command": "mani run overview",
+        "problemMatcher": []
+      },
+      {
+        "label": "Mani: Pull All Main",
+        "type": "shell",
+        "command": "mani run pull",
+        "problemMatcher": []
+      }
+    ]
+  }
+}

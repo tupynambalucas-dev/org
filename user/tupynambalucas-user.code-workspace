@@ -1,32 +1,16 @@
 {
   "folders": [
     {
-      "name": "org-core (Core Orchestrator)",
+      "name": "user (Professional Workspace Orchestrator)",
       "path": "."
     },
     {
-      "name": ".github (Org Governance)",
-      "path": ".github"
+      "name": "profile (Developer Professional Profile)",
+      "path": "profile"
     },
     {
-      "name": ".github-private (Private Governance & Member Profile)",
-      "path": ".github-private"
-    },
-    {
-      "name": "platform (Core Monorepo)",
-      "path": "platform"
-    },
-    {
-      "name": "docs (Documentation Hub)",
-      "path": "docs"
-    },
-    {
-      "name": "agent-mesh (Universal Agent Mesh)",
-      "path": "agent-mesh"
-    },
-    {
-      "name": "foundation (Foundation Engineering & Identities)",
-      "path": "foundation"
+      "name": "academic-lab (Developer Research Monorepo)",
+      "path": "academic-lab"
     }
   ],
   "settings": {
@@ -35,8 +19,6 @@
     "search.useGlobalIgnoreFiles": false,
     "search.useParentIgnoreFiles": false,
     "search.exclude": {
-      "**/.github": false,
-      "**/.github-private": false,
       "**/node_modules": true,
       "**/.pnpm-store": true,
       "**/.git": true,
@@ -45,9 +27,9 @@
       "**/.turbo": true
     },
     "files.exclude": {
-      "**/.github": false,
-      "**/.github-private": false,
-      "**/.git": false
+      "profile": true,
+      "academic-lab": true,
+      "**/.git": true
     },
     "files.watcherExclude": {
       "**/.git/objects/**": true,
@@ -74,14 +56,14 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Antigravity CLI (Core Scope)",
+        "label": "Antigravity CLI (User Scope)",
         "type": "process",
         "command": "wt.exe",
         "windows": {
           "command": "wt.exe",
           "args": [
             "-d",
-            "${workspaceFolder:org-core (Core Orchestrator)}",
+            "${workspaceFolder:user (Professional Workspace Orchestrator)}",
             "powershell.exe",
             "-NoExit",
             "-Command",
@@ -100,6 +82,12 @@
         "label": "Mani: Check Git Status",
         "type": "shell",
         "command": "mani run status",
+        "problemMatcher": []
+      },
+      {
+        "label": "Mani: Audit Overview Table",
+        "type": "shell",
+        "command": "mani run overview",
         "problemMatcher": []
       },
       {
