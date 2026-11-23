@@ -49,7 +49,7 @@
       "user": true,
       "**/.github": false,
       "**/.github-private": false,
-      "**/.git": false
+      "**/.git": true
     },
     "files.watcherExclude": {
       "**/.git/objects/**": true,

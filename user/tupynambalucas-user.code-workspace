@@ -29,7 +29,7 @@
     "files.exclude": {
       "profile": true,
       "academic-lab": true,
-      "**/.git": false
+      "**/.git": true
     },
     "files.watcherExclude": {
       "**/.git/objects/**": true,
