@@ -11,8 +11,6 @@ ehthumbs.db
 # Local Git Config Templates and Backups
 git-config/
 
-# Managed Repositories (Orchestrated independently via mani)
-
 # Legacy Deprecated Submodule Directories (Migrated to agent-mesh)
 agent-toolkit/
 
@@ -35,6 +33,13 @@ agent-mesh/
 platform/
 docs/
 foundation/
+ecosystem/
+
+# Developer Professional Individual Namespace (Preserves user/.gitkeep directory anchor)
+user/*
+!user/.gitkeep
+!user/mani.yaml
+
 # Agent Plans Container (Ignored by Git, preserved for local @ attachment via .ignore / .rgignore)
 .agents/plans/
 .agents/references/

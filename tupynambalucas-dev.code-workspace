@@ -1,7 +1,7 @@
 {
   "folders": [
     {
-      "name": "org-core (Core Orchestrator)",
+      "name": "org (Master Organization Orchestrator)",
       "path": "."
     },
     {
@@ -27,6 +27,30 @@
     {
       "name": "foundation (Foundation Engineering & Identities)",
       "path": "foundation"
+    },
+    {
+      "name": "ecosystem (Product Portfolio Orchestrator)",
+      "path": "ecosystem"
+    },
+    {
+      "name": "omnichannel (Commercial SaaS Monorepo)",
+      "path": "ecosystem/commercial/omnichannel"
+    },
+    {
+      "name": "elo-organico (Commercial SaaS Monorepo)",
+      "path": "ecosystem/commercial/elo-organico"
+    },
+    {
+      "name": "tessel (Proprietary Enterprise Monorepo)",
+      "path": "ecosystem/internal/tessel"
+    },
+    {
+      "name": "user/profile (Developer Professional Profile)",
+      "path": "user/profile"
+    },
+    {
+      "name": "user/academic-lab (Developer Research Monorepo)",
+      "path": "user/academic-lab"
     }
   ],
   "settings": {
@@ -74,14 +98,14 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Antigravity CLI (Core Scope)",
+        "label": "Antigravity CLI (Org Scope)",
         "type": "process",
         "command": "wt.exe",
         "windows": {
           "command": "wt.exe",
           "args": [
             "-d",
-            "${workspaceFolder:org-core (Core Orchestrator)}",
+            "${workspaceFolder:org (Master Organization Orchestrator)}",
             "powershell.exe",
             "-NoExit",
             "-Command",
@@ -91,7 +115,7 @@
         "problemMatcher": []
       },
       {
-        "label": "Mani: Sync Repositories",
+        "label": "Mani: Sync All Repositories",
         "type": "shell",
         "command": "mani sync",
         "problemMatcher": []
@@ -100,6 +124,12 @@
         "label": "Mani: Check Git Status",
         "type": "shell",
         "command": "mani run status",
+        "problemMatcher": []
+      },
+      {
+        "label": "Mani: Audit Overview Table",
+        "type": "shell",
+        "command": "mani run overview",
         "problemMatcher": []
       },
       {

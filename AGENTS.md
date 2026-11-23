@@ -1,13 +1,13 @@
-# tupynambalucas-dev Meta-Repository Agent Context
+# tupynambalucas-dev Master Organization Meta-Repository Agent Context
 
 This document serves as the root context router (Layer 1) for AI agents operating in the
-`tupynambalucas-dev/org-core` umbrella meta-repository.
+`tupynambalucas-dev/org` master enterprise meta-repository (`projects/org/`).
 
 ## Workspace Navigation
 
 - [README.md](./README.md): Primary developer documentation and Mani workspace orchestration runbook.
-- [mani.yaml](./mani.yaml): Declarative multi-repository manifest managing repositories, remotes, and batch tasks.
-- [tupynambalucas-dev-core.code-workspace](./tupynambalucas-dev-core.code-workspace): Canonical multi-root IDE workspace binding all six core repositories.
+- [mani.yaml](./mani.yaml): Declarative multi-repository manifest managing foundation (`core`), product portfolio (`ecosystem`), and developer (`user`) repositories, remotes, and batch tasks.
+- [tupynambalucas-dev.code-workspace](./tupynambalucas-dev.code-workspace): Canonical multi-root IDE workspace binding foundation, product ecosystem, and developer repositories.
 - [LICENSE](./LICENSE): Apache License 2.0 governing meta-repository orchestration assets.
 - [.github](./.github/AGENTS.md): Organization governance, community health standards, and public profile.
 - [.github-private](./.github-private/AGENTS.md): Organization internal governance, member-only profile, and enterprise AI settings.
@@ -15,11 +15,13 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 - [platform](./platform/AGENTS.md): Core platform monorepo containing services, apps, and Kubernetes manifests.
 - [docs](./docs/AGENTS.md): Sovereign documentation hub built with Docusaurus v3 and Crowdin.
 - [foundation](./foundation/AGENTS.md): Sovereign foundation monorepo hosting WSL2 custom distributions (`distributions/`), developer toolchain & GitHub CLI extensions (`tools/`), machine identities and Token Broker (`identity/`), Windows host virtualization (`virtualization/`), and Diataxis documentation hub (`references/`).
+- [ecosystem](./ecosystem/AGENTS.md): Product portfolio sub-meta-repository (`tupynambalucas-dev/ecosystem`) orchestrating commercial SaaS solutions (`ecosystem/commercial/`), internal proprietary assets (`ecosystem/internal/`), open-source packages (`ecosystem/oss/`), and corporate B2B client projects (`ecosystem/clients/`).
+- [user/](./user/): Individual developer professional namespace (`@tupynambalucas`) housing the developer's special GitHub profile repository (`user/profile`), knowledge research monorepo (`user/academic-lab`), and external contractor/client engagements (`user/external/`).
 
 ## Governance Standards
 
 - **Branching Model**: Single-Branch GitHub Flow on `main`. Short-lived branches MUST use Conventional Commit prefixes (`feat/`, `fix/`, `docs/`, `chore/`, `refactor/`, `ci/`, `perf/`, `test/`, `build/`, `style/`, `revert/`, `hotfix/`).
-- **Cryptographic Signature**: All Git commits and annotated tags MUST be signed with SSH (`git commit -S -m "..."`).
+- **Cryptographic Signature**: All Git commits and annotated tags MUST be signed with SSH (`git commit -S -m "..."`). Multi-tier `.gitconfig` conditional includes automatically route `@tupynambalucas-dev` inside `projects/org/` and `@tupynambalucas` inside `projects/org/user/`.
 - **Conventional Commits**: All commit messages must follow `<type>[optional (<scope>)][!]: <description>` (`<= 72` chars target, `<= 100` chars maximum).
 - **Zero-Emoji Policy**: Emojis are strictly forbidden across all code, PRs, comments, and agent interactions.
 - **Secret Hygiene**: Never commit plaintext tokens. Environment variables cascade via Infisical or local/parent `.env` files.
@@ -31,8 +33,17 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 Cross-repository commands and queries are executed using `mani`:
 
 ```bash
-# Check status across all managed repositories
+# Synchronize all repositories (or filter by tier tag: core, ecosystem, user)
+mani sync
+mani sync --tags core
+mani sync --tags ecosystem
+mani sync --tags user
+
+# Check status across all synced repositories
 mani run status
+
+# Comprehensive multi-repository audit table (branch, dirty status, last commit)
+mani run overview
 
 # Fetch remote changes for all repositories
 mani run fetch
@@ -44,11 +55,11 @@ mani run pull
 mani run branch
 ```
 
-## AI Agent Plugin Consumption (Dual Consumption Model)
+## AI Agent Plugin Consumption (Hierarchical & Standalone Dual Consumption Model)
 
-The organization operates under a unified Dual Consumption Model for AI agent plugins and skills:
+The organization operates under a unified Dual Consumption Model for AI agent plugins and skills without requiring NTFS directory junctions:
 
-1. **Meta-Repository Mode (`org-core`)**:
+1. **Meta-Repository & Hierarchical Workspace Mode (`org`, `ecosystem`, `user`)**:
    - The root [`.agents/plugins.json`](./.agents/plugins.json) registers local relative paths directly:
      ```json
      {
@@ -57,23 +68,16 @@ The organization operates under a unified Dual Consumption Model for AI agent pl
        ]
      }
      ```
-   - This enables real-time hot-reloading of agent plugins and MCP servers across the entire multi-root IDE workspace without intermediate package building or installation steps.
+   - Nested sub-workspaces inside `org/` (`ecosystem/`, `user/*`, `ecosystem/commercial/*`, `ecosystem/internal/*`) resolve `agent-mesh/plugins/packages` via ascending relative paths (`../agent-mesh/plugins/packages`, `../../agent-mesh/plugins/packages`, `../../../agent-mesh/plugins/packages`) with automatic fallback to `node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages`.
+   - This enables real-time hot-reloading of agent plugins and MCP servers across the entire multi-root IDE workspace without intermediate package building or directory junctions.
 2. **External & Standalone Monorepo Mode (`omnichannel`, `platform`, `docs`)**:
-   - External services and isolated child repositories consume the unified umbrella package `@tupynambalucas-dev/agent-mesh` via `catalogs.plugins-stack` in `pnpm-workspace.yaml`:
+   - External services and isolated child repository checkouts consume the unified umbrella package `@tupynambalucas-dev/agent-mesh` via `catalogs.plugins-stack` in `pnpm-workspace.yaml`:
      ```yaml
      catalogs:
        plugins-stack:
          '@tupynambalucas-dev/agent-mesh': 'github:tupynambalucas-dev/agent-mesh'
      ```
-   - Consumer `.agents/plugins.json` files declare:
-     ```json
-     {
-       "entries": [
-         { "path": "node_modules/@tupynambalucas-dev/agent-mesh/plugins/packages" }
-       ]
-     }
-     ```
-   - All 11 domain plugins (`appsheet`, `atelier`, `docusaurus`, `github-flow`, `github-org`, `gwork`, `profile`, `repo`, `research`, `secrets`, `web`) and 9 sovereign MCP servers execute seamlessly via self-contained launchers (`scripts/launcher.cjs`) and committed bundles (`dist/bin.cjs`).
+   - All 11 domain plugins (`appsheet`, `atelier`, `docusaurus`, `github-actions`, `github-flow`, `github-org`, `github-releases`, `github-repo`, `gwork`, `profile`, `research`, `secrets`, `web`) and 9 sovereign MCP servers execute seamlessly via self-contained launchers (`scripts/launcher.cjs`) and committed bundles (`dist/bin.cjs`).
 
 ## Architectural Plans & Artifact Dual-Storage Standard
 
@@ -85,7 +89,7 @@ Architectural blueprints, technical analyses, and master plans follow strict ent
 
 ## Required Skills
 
-Agents operating at the `org-core` meta-repository layer MUST autonomously engage the domain skills provided by [`agent-mesh`](./agent-mesh/plugins/README.md):
+Agents operating at the `org` meta-repository layer MUST autonomously engage the domain skills provided by [`agent-mesh`](./agent-mesh/plugins/README.md):
 
 - **Atelier Plugin (`@tupynambalucas-dev/plugin-atelier`)**: `router-architect`, `skill-architect`, `rule-architect`, `hook-architect`, `plugin-architect`, `plan-architect`.
 - **GitHub Domain Plugins (`@tupynambalucas-dev/plugin-github-*`)**:
