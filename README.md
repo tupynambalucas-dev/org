@@ -63,12 +63,17 @@ flowchart TD
 | [`omnichannel`](./ecosystem/commercial/omnichannel/README.md) | `ecosystem/commercial/omnichannel` | `ecosystem`, `commercial` | `main` | [`README.md`](./ecosystem/commercial/omnichannel/README.md) | [`AGENTS.md`](./ecosystem/commercial/omnichannel/AGENTS.md) | Commercial multi-tenant omnichannel messaging gateway and FSM workflow engine. |
 | [`elo-organico`](./ecosystem/commercial/elo-organico/README.md) | `ecosystem/commercial/elo-organico` | `ecosystem`, `commercial` | `main` | [`README.md`](./ecosystem/commercial/elo-organico/README.md) | [`AGENTS.md`](./ecosystem/commercial/elo-organico/AGENTS.md) | Commercial organic product sharing and community management platform. |
 | [`tessel`](./ecosystem/internal/tessel/README.md) | `ecosystem/internal/tessel` | `ecosystem`, `internal` | `main` | [`README.md`](./ecosystem/internal/tessel/README.md) | [`AGENTS.md`](./ecosystem/internal/tessel/AGENTS.md) | Proprietary hybrid spatial social ecosystem and WebGPU/Three.js 3D simulation engine. |
+| [`user`](./user/README.md) | `user` | `user` | `main` | [`README.md`](./user/README.md) | [`AGENTS.md`](./user/AGENTS.md) | Subsystem workspace orchestrating developer professional presence, profile configuration, and academic research. |
 | [`profile`](./user/profile/README.md) | `user/profile` | `user` | `main` | [`README.md`](./user/profile/README.md) | [`AGENTS.md`](./user/profile/AGENTS.md) | Developer special GitHub profile repository and automated SVG stats renderer (`@tupynambalucas/profile`). |
 | [`academic-lab`](./user/academic-lab/README.md) | `user/academic-lab` | `user` | `main` | [`README.md`](./user/academic-lab/README.md) | [`AGENTS.md`](./user/academic-lab/AGENTS.md) | Structured knowledge engineering and AI-assisted research monorepo (`@tupynambalucas/academic-lab`). |
 
-### Multi-Root IDE Workspace
+### Multi-Root IDE Workspaces
 
-Open [`tupynambalucas-dev.code-workspace`](./tupynambalucas-dev.code-workspace) in VS Code or Antigravity IDE to mount foundation, ecosystem, and developer user repositories in a unified workspace with integrated Mani tasks.
+The workstation provides domain-scoped workspaces to prevent UI clutter and ensure optimal language server performance:
+- **Core Organization Workspace**: [`tupynambalucas-dev.code-workspace`](./tupynambalucas-dev.code-workspace) (mounts `.`, `.github`, `.github-private`, `platform`, `docs`, `agent-mesh`, `foundation`).
+- **Product Ecosystem Workspace**: [`tupynambalucas-dev-ecosystem.code-workspace`](./ecosystem/tupynambalucas-dev-ecosystem.code-workspace) (mounts `ecosystem`, `commercial/*`, `internal/*`).
+- **Developer Professional Workspace**: [`tupynambalucas-user.code-workspace`](./user/tupynambalucas-user.code-workspace) (mounts `user`, `profile`, `academic-lab`).
+- **Umbrella Meta-Workspace**: [`tupynambalucas-dev-all.code-workspace`](./tupynambalucas-dev-all.code-workspace) (all 13 repositories with exclusion masks).
 
 ---
 

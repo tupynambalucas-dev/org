@@ -27,30 +27,6 @@
     {
       "name": "foundation (Foundation Engineering & Identities)",
       "path": "foundation"
-    },
-    {
-      "name": "ecosystem (Product Portfolio Orchestrator)",
-      "path": "ecosystem"
-    },
-    {
-      "name": "omnichannel (Commercial SaaS Monorepo)",
-      "path": "ecosystem/commercial/omnichannel"
-    },
-    {
-      "name": "elo-organico (Commercial SaaS Monorepo)",
-      "path": "ecosystem/commercial/elo-organico"
-    },
-    {
-      "name": "tessel (Proprietary Enterprise Monorepo)",
-      "path": "ecosystem/internal/tessel"
-    },
-    {
-      "name": "user/profile (Developer Professional Profile)",
-      "path": "user/profile"
-    },
-    {
-      "name": "user/academic-lab (Developer Research Monorepo)",
-      "path": "user/academic-lab"
     }
   ],
   "settings": {
@@ -69,6 +45,8 @@
       "**/.turbo": true
     },
     "files.exclude": {
+      "ecosystem": true,
+      "user": true,
       "**/.github": false,
       "**/.github-private": false,
       "**/.git": false

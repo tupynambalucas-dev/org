@@ -39,6 +39,11 @@ ecosystem/
 user/*
 !user/.gitkeep
 !user/mani.yaml
+!user/README.md
+!user/AGENTS.md
+!user/tupynambalucas-user.code-workspace
+!user/.agents/
+!user/.agents/**
 
 # Agent Plans Container (Ignored by Git, preserved for local @ attachment via .ignore / .rgignore)
 .agents/plans/

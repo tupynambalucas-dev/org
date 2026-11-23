@@ -16,7 +16,7 @@ This document serves as the root context router (Layer 1) for AI agents operatin
 - [docs](./docs/AGENTS.md): Sovereign documentation hub built with Docusaurus v3 and Crowdin.
 - [foundation](./foundation/AGENTS.md): Sovereign foundation monorepo hosting WSL2 custom distributions (`distributions/`), developer toolchain & GitHub CLI extensions (`tools/`), machine identities and Token Broker (`identity/`), Windows host virtualization (`virtualization/`), and Diataxis documentation hub (`references/`).
 - [ecosystem](./ecosystem/AGENTS.md): Product portfolio sub-meta-repository (`tupynambalucas-dev/ecosystem`) orchestrating commercial SaaS solutions (`ecosystem/commercial/`), internal proprietary assets (`ecosystem/internal/`), open-source packages (`ecosystem/oss/`), and corporate B2B client projects (`ecosystem/clients/`).
-- [user/](./user/): Individual developer professional namespace (`@tupynambalucas`) housing the developer's special GitHub profile repository (`user/profile`), knowledge research monorepo (`user/academic-lab`), and external contractor/client engagements (`user/external/`).
+- [user](./user/AGENTS.md): Individual developer professional namespace (`@tupynambalucas`) housing the developer's special GitHub profile repository (`user/profile`), knowledge research monorepo (`user/academic-lab`), and external contractor/client engagements (`user/external/`).
 
 ## Governance Standards
 
